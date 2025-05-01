@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	if (savedNumGroups) {
 		document.getElementById("numGroups").value = savedNumGroups;
+	} else {
+		document.getElementById("numGroups").value = 2;
 	}
 });
 
@@ -15,7 +17,8 @@ function createGroups() {
 	const names = document
 		.getElementById("names")
 		.value.trim()
-		.split(/[ ,;\s、]+/);
+		.split(/[ ,;\s、]+/)
+		.filter((name) => name.trim() !== "");
 	console.log(names);
 	const numGroups = parseInt(document.getElementById("numGroups").value, 10);
 
