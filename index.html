@@ -1,126 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>分組程式</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* height: 100vh; */
-        background-color: #3c455c;
-      }
-      * {
-        /* border: 1px solid black; */
-        box-sizing: border-box;
-      }
-      .container {
-        background: #b37c57;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px #3c455c;
-        width: 350px;
-        text-align: center;
-        color: white;
-        letter-spacing: 5px;
-        position: relative;
-        top: 20vh;
-      }
-      input,
-      button,
-      textarea {
-        margin: 10px 0;
-        padding: 10px;
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-      }
-      button {
-        background-color: #604e2b;
-        letter-spacing: 2px;
-        color: white;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #937841;
-      }
-      .group {
-        margin-top: 20px;
-      }
-      .group div {
-        margin: 5px 0;
-        padding: 5px;
-        background-color: #e9ecef;
-        color: #3c455c;
-        font-weight: 700;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        font-family: 微軟正黑體;
-      }
-    </style>
-    <script>
-      function createGroups() {
-        const names = document
-          .getElementById("names")
-          .value.trim()
-          .split(/[ ,;\s、]+/);
-        console.log(names);
-        const numGroups = parseInt(
-          document.getElementById("numGroups").value,
-          10
-        );
-
-        if (names.length === 0 || numGroups <= 0) {
-          alert("請輸入有效的人員名單和組數");
-          return;
-        }
-
-        // 洗牌算法隨機打亂人員順序
-        for (let i = names.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [names[i], names[j]] = [names[j], names[i]];
-        }
-
-        const groups = Array.from({ length: numGroups }, () => []);
-
-        names.forEach((name, index) => {
-          groups[index % numGroups].push(name);
-        });
-
-        const resultContainer = document.getElementById("result-container");
-        resultContainer.innerHTML = "";
-
-        groups.forEach((group, index) => {
-          const groupDiv = document.createElement("div");
-          groupDiv.className = "group";
-          groupDiv.innerHTML = `<h3>組${index + 1}</h3>`;
-          group.forEach((name) => {
-            const nameDiv = document.createElement("div");
-            nameDiv.textContent = name;
-            groupDiv.appendChild(nameDiv);
-          });
-          resultContainer.appendChild(groupDiv);
-        });
-      }
-    </script>
-  </head>
-  <body>
-    <div class="container">
-      <h1>分組程式</h1>
-      <textarea
-        id="names"
-        placeholder="輸入人員名字，可以用空格、換行、頓號來分隔"
-        rows="5"
-      ></textarea>
-      <input type="number" id="numGroups" placeholder="輸入組數" />
-      <button onclick="createGroups()">分組</button>
-      <div id="result-container"></div>
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>分組程式</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>分組程式</h1>
+			<textarea
+				id="names"
+				placeholder="輸入人員名字，可以用空格、換行、頓號來分隔"
+				rows="5"></textarea>
+			<input type="number" id="numGroups" placeholder="輸入組數" />
+			<button onclick="createGroups()">分組</button>
+			<div id="result-container"></div>
+		</div>
+		<script src="main.js"></script>
+	</body>
 </html>
