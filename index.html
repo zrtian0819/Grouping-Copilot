@@ -3,19 +3,40 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>分組程式</title>
+		<title>幫你分組</title>
 		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+			integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<!-- 引入 html2canvas 庫 -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
-			<h1>分組程式</h1>
+			<h1>幫你分組</h1>
 			<textarea
 				id="names"
 				placeholder="輸入人員名字，可以用空格、換行、頓號來分隔"
 				rows="5"></textarea>
-			<input type="number" id="numGroups" placeholder="輸入組數" />
+			<div class="input-group">
+				<i class="fa-solid fa-minus" onclick="adjustGroupCount(-1)"></i>
+				<!-- <input type="number" id="numGroups" placeholder="輸入組數" /> -->
+				<div id="numGroups" class="groupCount">2</div>
+				<i class="fa-solid fa-plus" onclick="adjustGroupCount(1)"></i>
+			</div>
+
 			<button onclick="createGroups()">分組</button>
 			<div id="result-container"></div>
+			<!-- 新增分享按鈕，結果出現後才顯示 -->
+			<button
+				id="share-button"
+				onclick="shareResult()"
+				style="display: none">
+				<i class="fa-solid fa-share-alt"></i> 分享結果截圖
+			</button>
 		</div>
 		<script src="main.js"></script>
 	</body>
