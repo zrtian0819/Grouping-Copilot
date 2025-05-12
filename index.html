@@ -23,10 +23,11 @@
 				rows="5"></textarea>
 			<div class="input-group">
 				<i class="fa-solid fa-minus" onclick="adjustGroupCount(-1)"></i>
-				<input type="number" id="numGroups" placeholder="輸入組數" />
+				<!-- <input type="number" id="numGroups" placeholder="輸入組數" /> -->
+				<div id="numGroups" class="groupCount">2</div>
 				<i class="fa-solid fa-plus" onclick="adjustGroupCount(1)"></i>
 			</div>
-			<div></div>
+
 			<button onclick="createGroups()">分組</button>
 			<div id="result-container"></div>
 			<!-- 新增分享按鈕，結果出現後才顯示 -->

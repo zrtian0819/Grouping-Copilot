@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.getElementById("names").value = savedNames;
 	}
 	if (savedNumGroups) {
-		document.getElementById("numGroups").value = savedNumGroups;
+		document.getElementById("numGroups").textContent = savedNumGroups;
 	} else {
-		document.getElementById("numGroups").value = 2;
+		document.getElementById("numGroups").textContent = "2";
 	}
 });
 
@@ -20,7 +20,10 @@ function createGroups() {
 		.split(/[ ,;\s、]+/)
 		.filter((name) => name.trim() !== "");
 	console.log(names);
-	const numGroups = parseInt(document.getElementById("numGroups").value, 10);
+	const numGroups = parseInt(
+		document.getElementById("numGroups").textContent,
+		10
+	);
 
 	if (names.length === 0 || numGroups <= 0) {
 		alert("請輸入有效的人員名單和組數");
@@ -34,7 +37,7 @@ function createGroups() {
 	);
 	localStorage.setItem(
 		"numGroups",
-		document.getElementById("numGroups").value
+		document.getElementById("numGroups").textContent
 	);
 
 	// 洗牌算法隨機打亂人員順序
@@ -146,8 +149,8 @@ function shareResult() {
 }
 
 function adjustGroupCount(change) {
-	const numGroupsInput = document.getElementById("numGroups");
-	let value = parseInt(numGroupsInput.value) || 1;
+	const numGroupsElement = document.getElementById("numGroups");
+	let value = parseInt(numGroupsElement.textContent) || 1;
 	value += change;
 
 	// 確保組數不會小於1
@@ -155,5 +158,5 @@ function adjustGroupCount(change) {
 		value = 1;
 	}
 
-	numGroupsInput.value = value;
+	numGroupsElement.textContent = value;
 }
